@@ -94,7 +94,7 @@ class Backward(nn.Module):
         ## Update (temporal) 3D discriminator
         if self.w_GP:
             seq_real.requires_grad_() ## needs to be set to true due to GP
-
+    
         pred_gen_t, _ = disc_t(seq_fake.transpose(1, 2).detach())
         pred_orig_t, _ = disc_t(seq_real.transpose(1, 2))
         L_d_t = hinge_loss(pred_gen_t, pred_orig_t, update='disc')

@@ -281,6 +281,7 @@ class Discriminator(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x):
+        # print(x.size())
         if x.size(1) > x.size(2):
             x = x.transpose(1, 2)
         
@@ -296,6 +297,7 @@ class Discriminator(nn.Module):
             out.append(x)
 
         x = self.avgpool(x)
+        # print(x.reshape(x.size(0), -1).size())
         x = self.fc(x.reshape(x.size(0), -1))
 
         return x, out

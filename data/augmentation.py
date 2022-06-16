@@ -16,6 +16,7 @@ class Augmentation_random_crop(nn.Module):
 
 
     def forward(self, x):
+        # print(x.size())
         x = self.resize(x)
         x = self.hflip(x)
         x = self.random_crop(x)
